@@ -1,3 +1,7 @@
+CREATE DATABASE sistemac;
+
+USE sistemac;
+
 CREATE TABLE state(
 id INT IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(50)
