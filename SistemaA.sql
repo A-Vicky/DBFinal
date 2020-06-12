@@ -1,26 +1,26 @@
 CREATE TABLE state(
-id INT PRIMARY KEY,
+id INT IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(50)
 );
 
 CREATE TABLE country(
-id INT PRIMARY KEY,
+id INT IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(50)
 );
 
 CREATE TABLE civilstatus(
-id INT PRIMARY KEY,
+id INT IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(50)
 );
 
 CREATE TABLE jobposition(
-id INT PRIMARY KEY,
+id INT IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(50),
 Description VARCHAR(150)
 );
 
 CREATE TABLE municipio(
-id INT PRIMARY KEY,
+id INT IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(50),
 idstate INT,
 FOREIGN KEY (idstate) REFERENCES state (id)
@@ -44,7 +44,7 @@ FOREIGN KEY (civilstatusid) REFERENCES civilstatus (id)
 );
 
 CREATE TABLE location(
-idlocation INT PRIMARY KEY,
+idlocation INT IDENTITY(1,1) PRIMARY KEY,
 Name VARCHAR(50),
 Description VARCHAR(150),
 Address VARCHAR(100),
@@ -57,7 +57,7 @@ FOREIGN KEY (idmunicipio) REFERENCES municipio (id)
 );
 
 CREATE TABLE employee(
-empcod INT PRIMARY KEY,
+empcod INT IDENTITY(1,1) PRIMARY KEY,
 phone VARCHAR(20),
 email VARCHAR(45),
 Address VARCHAR(100),
@@ -80,7 +80,7 @@ FOREIGN KEY (cuiperson) REFERENCES person (cui)
 );
 
 CREATE TABLE certificate(
-numdoc INT PRIMARY KEY,
+numdoc INT IDENTITY(10000,1) PRIMARY KEY,
 empcod INT,
 idbirthcert INT,
 FOREIGN KEY (empcod) REFERENCES employee (empcod),
