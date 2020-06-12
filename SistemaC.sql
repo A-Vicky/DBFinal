@@ -3,34 +3,34 @@ CREATE DATABASE sistemac;
 USE sistemac;
 
 CREATE TABLE state(
-id INT IDENTITY(1,1) PRIMARY KEY,
+id INT AUTO_INCREMENT PRIMARY KEY,
 Name VARCHAR(50)
 );
 
 CREATE TABLE country(
-id INT IDENTITY(1,1) PRIMARY KEY,
+id INT AUTO_INCREMENT PRIMARY KEY,
 Name VARCHAR(50)
 );
 
 CREATE TABLE typepay(
-id INT IDENTITY(1,1) PRIMARY KEY,
+id INT AUTO_INCREMENT PRIMARY KEY,
 Type VARCHAR(50)
 );
 
 CREATE TABLE typeornato(
-id INT IDENTITY(1,1) PRIMARY KEY,
+id INT AUTO_INCREMENT PRIMARY KEY,
 Cost INT,
 Salaryrange VARCHAR(50)
 );
 
-CREATE TABLE position(
-id INT IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE jobposition(
+id INT AUTO_INCREMENT PRIMARY KEY,
 Name VARCHAR(50),
 Description VARCHAR(150)
 );
 
 CREATE TABLE municipio(
-id INT IDENTITY(1,1) PRIMARY KEY,
+id INT AUTO_INCREMENT PRIMARY KEY,
 Name VARCHAR(50),
 idstate INT,
 FOREIGN KEY (idstate) REFERENCES state (id)
@@ -50,7 +50,7 @@ FOREIGN KEY (idmunicipio) REFERENCES municipio (id)
 );
 
 CREATE TABLE ornato(
-idornato INT IDENTITY(1,1) PRIMARY KEY,
+idornato INT AUTO_INCREMENT PRIMARY KEY,
 idperson VARCHAR(50),
 idtypeornato INT,
 FOREIGN KEY (idperson) REFERENCES person (cui),
@@ -58,7 +58,7 @@ FOREIGN KEY (idtypeornato) REFERENCES typeornato (id)
 );
 
 CREATE TABLE location(
-idlocation INT IDENTITY(1,1) PRIMARY KEY,
+idlocation INT AUTO_INCREMENT PRIMARY KEY,
 Name VARCHAR(50),
 Description VARCHAR(150),
 Address VARCHAR(100),
@@ -71,7 +71,7 @@ FOREIGN KEY (idmunicipio) REFERENCES municipio (id)
 );
 
 CREATE TABLE employee(
-idemployee INT IDENTITY(1,1) PRIMARY KEY,
+idemployee INT AUTO_INCREMENT PRIMARY KEY,
 phone VARCHAR(20),
 email VARCHAR(45),
 Address VARCHAR(100),
@@ -80,11 +80,11 @@ idlocation INT,
 idposition INT,
 FOREIGN KEY (idperson) REFERENCES person (cui),
 FOREIGN KEY (idlocation) REFERENCES location (idlocation),
-FOREIGN KEY (idposition) REFERENCES position (id)
+FOREIGN KEY (idposition) REFERENCES jobposition (id)
 );
 
 CREATE TABLE payment(
-idpayment INT IDENTITY(1,1) PRIMARY KEY,
+idpayment INT AUTO_INCREMENT PRIMARY KEY,
 idperson VARCHAR(50),
 idtypepay INT,
 FOREIGN KEY (idperson) REFERENCES person (cui),
@@ -92,6 +92,5 @@ FOREIGN KEY (idtypepay) REFERENCES typepay (id),
 dateof DATE,
 datemod DATE,
 idemployee INT,
-FOREIGN KEY (idemployee) REFERENCES employee (idemployee),
+FOREIGN KEY (idemployee) REFERENCES employee (idemployee)
 );
-
