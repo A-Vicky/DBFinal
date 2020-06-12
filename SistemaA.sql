@@ -1,43 +1,43 @@
 CREATE TABLE state(
-id INT IDENTITY(1,1) PRIMARY KEY,
-Name VARCHAR(50)
+id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+Name VARCHAR2(50)
 );
 
 CREATE TABLE country(
-id INT IDENTITY(1,1) PRIMARY KEY,
-Name VARCHAR(50)
+id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+Name VARCHAR2(50)
 );
 
 CREATE TABLE civilstatus(
-id INT IDENTITY(1,1) PRIMARY KEY,
-Name VARCHAR(50)
+id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+Name VARCHAR2(50)
 );
 
 CREATE TABLE jobposition(
-id INT IDENTITY(1,1) PRIMARY KEY,
-Name VARCHAR(50),
-Description VARCHAR(150)
+id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+Name VARCHAR2(50),
+Description VARCHAR2(150)
 );
 
 CREATE TABLE municipio(
-id INT IDENTITY(1,1) PRIMARY KEY,
-Name VARCHAR(50),
-idstate INT,
+id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+Name VARCHAR2(50),
+idstate NUMBER,
 FOREIGN KEY (idstate) REFERENCES state (id)
 );
 
 CREATE TABLE person(
-cui VARCHAR(50) PRIMARY KEY,
-Names VARCHAR(100),
-Lnames VARCHAR(100),
+cui VARCHAR2(50) PRIMARY KEY,
+Names VARCHAR2(100),
+Lnames VARCHAR2(100),
 Birthdate DATE,
-municipionac INT,
+municipionac NUMBER,
 FOREIGN KEY (municipionac) REFERENCES municipio (id),
-Gender VARCHAR(1),
-Address VARCHAR(100),
-idcountry INT,
-idmunicipio INT,
-civilstatusid INT,
+Gender VARCHAR2(1),
+Address VARCHAR2(100),
+idcountry NUMBER,
+idmunicipio NUMBER,
+civilstatusid NUMBER,
 FOREIGN KEY (idcountry) REFERENCES country (id),
 FOREIGN KEY (idmunicipio) REFERENCES municipio (id),
 FOREIGN KEY (civilstatusid) REFERENCES civilstatus (id)
