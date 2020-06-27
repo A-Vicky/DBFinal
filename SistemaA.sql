@@ -1,4 +1,4 @@
-CCREATE TABLE state(
+CREATE TABLE state(
 id INT NOT NULL,
 Name VARCHAR(50),
 CONSTRAINT state_pk PRIMARY KEY (id)
@@ -39,7 +39,7 @@ END;
 
 CREATE TABLE civilstatus(
 id INT NOT NULL,
-Name VARCHAR(50)
+Name VARCHAR(50),
 CONSTRAINT civilstatus_pk PRIMARY KEY (id)
 );
 
@@ -59,7 +59,7 @@ END;
 CREATE TABLE jobposition(
 id INT NOT NULL,
 Name VARCHAR(50),
-Description VARCHAR(150)
+Description VARCHAR(150),
 CONSTRAINT jobposition_pk PRIMARY KEY (id)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE municipio(
 id INT NOT NULL,
 Name VARCHAR(50),
 idstate INT,
-FOREIGN KEY (idstate) REFERENCES state (id)
+FOREIGN KEY (idstate) REFERENCES state (id),
 CONSTRAINT municipio_pk PRIMARY KEY (id)
 );
 
@@ -111,7 +111,7 @@ idmunicipio INT,
 civilstatusid INT,
 FOREIGN KEY (idcountry) REFERENCES country (id),
 FOREIGN KEY (idmunicipio) REFERENCES municipio (id),
-FOREIGN KEY (civilstatusid) REFERENCES civilstatus (id)
+FOREIGN KEY (civilstatusid) REFERENCES civilstatus (id),
 CONSTRAINT person_pk PRIMARY KEY (cui)
 );
 
@@ -137,8 +137,8 @@ idcountry INT,
 idmunicipio INT,
 FOREIGN KEY (idboss) REFERENCES person (cui),
 FOREIGN KEY (idcountry) REFERENCES country (id),
-FOREIGN KEY (idmunicipio) REFERENCES municipio (id)
-CONSTRAINT location_pk PRIMARY KEY (id)
+FOREIGN KEY (idmunicipio) REFERENCES municipio (id),
+CONSTRAINT location_pk PRIMARY KEY (idlocation)
 );
 
 CREATE SEQUENCE location_seq START WITH 1;
@@ -164,8 +164,8 @@ idmunicipio INT,
 idposition INT,
 FOREIGN KEY (idperson) REFERENCES person (cui),
 FOREIGN KEY (idmunicipio) REFERENCES municipio(id),
-FOREIGN KEY (idposition) REFERENCES jobposition (id)
-CONSTRAINT employee_pk PRIMARY KEY (id)
+FOREIGN KEY (idposition) REFERENCES jobposition (id),
+CONSTRAINT employee_pk PRIMARY KEY (empcod)
 );
 
 CREATE SEQUENCE employee_seq START WITH 1;
@@ -188,8 +188,8 @@ iddad VARCHAR(50),
 cuiperson VARCHAR(50),
 FOREIGN KEY (idmom) REFERENCES person (cui),
 FOREIGN KEY (iddad) REFERENCES person (cui),
-FOREIGN KEY (cuiperson) REFERENCES person (cui)
-CONSTRAINT birthcert_pk PRIMARY KEY (id)
+FOREIGN KEY (cuiperson) REFERENCES person (cui),
+CONSTRAINT birthcert_pk PRIMARY KEY (L_F_P )
 );
 
 CREATE SEQUENCE birthcert_seq START WITH 111;
@@ -206,12 +206,12 @@ END;
 /
 
 CREATE TABLE certificate(
-numdoc INT PRIMARY KEY,
+numdoc INT NOT NULL,
 empcod INT,
 idbirthcert INT,
 FOREIGN KEY (empcod) REFERENCES employee (empcod),
-FOREIGN KEY (idbirthcert) REFERENCES birthcert(L_F_P)
-CONSTRAINT certificate_pk PRIMARY KEY (id)
+FOREIGN KEY (idbirthcert) REFERENCES birthcert(L_F_P),
+CONSTRAINT certificate_pk PRIMARY KEY (numdoc)
 );
 
 CREATE SEQUENCE certificate_seq START WITH 1;
